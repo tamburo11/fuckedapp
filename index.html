@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <title>Fucked App</title> <!-- title -->
+
+    <!-- <link href="lib/bootstrap-5.0.0-beta1-dist/css/bootstrap.min.css" rel="stylesheet"> place boostrap before your stylesheet -->
+    <link rel="stylesheet" href="fuckedApp.css"> <!-- your personal stylesheet -->
+    <!-- <script src="lib/bootstrap-5.0.0-beta1-dist/js/bootstrap.bundle.min.js" ></script>  boostrap javascript -->
+  
+  </head>
+
+  <body>
+    <div class="center">
+      <div class="team">
+        k i s s t e a m S i e r r e 2 8 f e b b r a i o 2 0 2 4
+  
+      </div>
+
+      <img class="kiss" src="kiss.png" width="500" height="auto">
+    
+      <div class="title">
+        
+        F U C K E D A P P
+      </div>
+      <button id="fucked"> F U C K E D </button>
+      <br>
+      <div class="people">
+        Camilla Parini (il capo)  <br>
+        Simon  Waldvogel (braccio destro) <br>
+        Francesca Sproccati (occhio (e) sterno (e) controfigura)  <br>
+        Francesca Caccia (monk(ey) girl)  <br>
+        Thomas Couppey (the Giant) <br>
+        Martina Barjacoba (avvo-cat(to)) <br>
+        Kevin Blaser (no-wax [or I kill u]) <br>
+        Andrea Sanson (gnaaaammmY) <br>
+        Moris Freiburghaus (rigor moris-so il sorriso) <br>
+        Alberto Barberis (pleasecream!) <br>
+
+      </div>
+  
+      
+    </div>
+
+  </body>
+
+<!-- my javascript -->
+  <script >
+
+
+    const audioContext = new AudioContext(); // create the audio context
+    audioContext.suspend();
+
+    const URL = 'loseit.mp3';
+
+    let audio;
+
+    window.fetch(URL)
+    .then(response => response.arrayBuffer())
+    .then(arrayBuffer => audioContext.decodeAudioData(arrayBuffer))
+    .then(audioBuffer => {
+      audio = audioBuffer;
+    });
+
+    function fuckedAppOne(){
+      document.body.style.backgroundColor = "red";
+        setTimeout(fuckedAppTwo, 100);
+      }
+
+      function fuckedAppTwo(){
+        document.body.style.backgroundColor = "rgb(0, 255, 0)";
+        setTimeout(fuckedAppOne, 100); 
+      }
+
+    setTimeout(fuckedAppOne, 100);
+    let myButton = document.getElementById("fucked");
+      myButton.addEventListener("click",function(){
+        audioContext.resume();
+        myButton.onclick = () => play();
+      });
+
+    function play() {
+      const source = audioContext.createBufferSource();
+      source.buffer = audio;
+      source.connect(audioContext.destination);
+      source.start();
+      setTimeout(play, 2000); 
+      createAKiss();
+    }
+
+    function createAKiss(){
+      let newKiss = document.createElement("img");
+      let top = Math.random()*100;
+      let left = Math.random()*100;
+      let width = Math.random()*300;
+      newKiss.className = "kiss";
+      newKiss.src="kiss.png";
+      newKiss.width=width+200;
+      // newKiss.height="auto";
+      newKiss.style.top = `${top}%`;
+      newKiss.style.left = `${left}%`;
+      document.body.appendChild(newKiss);
+    }
+
+  </script>
+ 
+</html>
